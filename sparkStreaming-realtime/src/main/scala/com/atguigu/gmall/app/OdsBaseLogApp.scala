@@ -41,7 +41,7 @@ object OdsBaseLogApp {
     val ODS_GROUP_ID = "ODS_BASE_LOG_GROUP"
     //todo 在redis中获取offset ,指定offset进行消费
     val offsets: Map[TopicPartition, Long] = OffsetsUtils.readOffset(ODS_TOPIC, ODS_GROUP_ID)
-    println(offsets, 1234)
+
     var kafkaDStream: InputDStream[ConsumerRecord[String, String]] = if (offsets != null && offsets.size > 0) {
       //      指定偏移量消费
       KafkaUtils_gmall.getKafkaDStream(ssc, ODS_TOPIC, ODS_GROUP_ID, offsets)
